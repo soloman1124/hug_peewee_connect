@@ -8,7 +8,7 @@ except (IOError, ImportError, OSError, RuntimeError):
 
 setuptools.setup(
     name="hug_peewee_connect",
-    version="0.0.1",
+    version="0.0.2",
     url="https://github.com/soloman1124/hug_peewee_connect",
 
     author="Soloman Weng",
@@ -24,8 +24,6 @@ setuptools.setup(
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
