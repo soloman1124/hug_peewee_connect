@@ -4,16 +4,20 @@ from playhouse.db_url import connect
 
 
 def manage(api, db_url, **connect_params):
+    exclude = connect_params.pop('exclude', None)
     engine_instance = connect(db_url, **connect_params)
 
     hug_api = hug.API(api)
+
     @hug.request_middleware(api=hug_api)
     def process_data(request, response):
-        engine_instance.connect()
+        if exclude is None or not exclude(request, 'request'):
+            engine_instance.connect()
 
     @hug.response_middleware(api=hug_api)
     def process_data(request, response, resource):
-        engine_instance.close()
+        if exclude is None or not exclude(request, 'response'):
+            engine_instance.close()
 
     class DatabaseModel(Model):
         class Meta:
